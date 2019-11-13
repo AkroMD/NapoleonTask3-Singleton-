@@ -10,6 +10,7 @@ import UIKit
 
 class DeleteView: UIViewController {
 
+//    Функции с маленькой буквы надо
     @IBAction func Delete(_ sender: Any) {
         Contacts.Delete(index: Contacts.kind)
         Contacts.save()

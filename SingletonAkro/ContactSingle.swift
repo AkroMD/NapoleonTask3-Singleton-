@@ -1,5 +1,8 @@
 import Foundation
 
+//Лучше вынести в отдельный файл класс
+//модель, потому что тут она лишняя
+//и становится сложнее ориентироваться в коде
 class Contact: NSObject, NSCoding{
     
     enum Keys: String {
@@ -21,6 +24,7 @@ class Contact: NSObject, NSCoding{
         self.init(name: name,lastname: lastname,tel: tel)
     }
     
+//    Пустые функции, которые ничего не делают?
     func save(){
         
     }
@@ -29,8 +33,20 @@ class Contact: NSObject, NSCoding{
 
     }
     
+//    После запятых надо как минимум ставить пробелы
+//    Обычно для каждого свойства своя строка со своим типом
+//    а не все свйоства в одной строке
+    
+//    И все поля не должны быть Optional,
+//    потому что нам нет смысла сохранять контакт
+//    в котором нет никакой информации
     var name,lastname,tel: String?
     
+//    Много где забываешь пробел после функции, перед фигурной скобкой
+//    Т.е. у тебя вот так:
+//    init(name: String?, lastname: String?, tel: String?){
+//    А надо вот так:
+//    init(name: String?, lastname: String?, tel: String?) {
     init(name: String?, lastname: String?, tel: String?){
         self.name = name
         self.lastname = lastname
@@ -39,6 +55,7 @@ class Contact: NSObject, NSCoding{
    
 }
 
+// Опять пробел потерялся
 class Contacts{
     
     private static var contacts = [Contact]()
@@ -52,10 +69,15 @@ class Contacts{
         UserDefaults.standard.set(data, forKey: key)
         
     }
-    static func load(){
-        guard let data = UserDefaults.standard.data(forKey: key) else {return}
-        guard let codeddata = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data)   else {return}
-        contacts = codeddata as! [Contact]
+    
+//    Не жалей переносов строк после функций, тогда код
+//    будет намного читаемее
+    
+//    И функции с большой буквы очень грубая ошибка)
+    static func load() {
+        guard let data = UserDefaults.standard.data(forKey: key) else { return }
+        guard let codeDate = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) else { return }
+        contacts = codeDate as! [Contact]
     }
     static func Add(contact: Contact){
         contacts.append(contact)

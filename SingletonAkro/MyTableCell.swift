@@ -30,8 +30,11 @@ class MyTableCell: UITableViewCell {
     }
     
     @IBAction func ShowEditContact(_ sender: Any) {
+//        ; не нужны практически никогда в свифте
         Contacts.kind = cellindex;
     }
+    
+//    Пустая функция?
     @IBAction func EditAction(_ sender: Any) {
     }
 }

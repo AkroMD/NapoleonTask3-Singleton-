@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+//    Лучше не делать лишних переносов между аутлетами
+//    в этом случае, т.к. их мало
     @IBOutlet weak var table: UITableView!
-    
-    
     @IBOutlet weak var startView: UIView!
     
     
@@ -20,15 +20,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         Contacts.load()
     }
-
-    @IBAction func ShowAddContact(_ sender: Any) {
-        Contacts.kind = -1;
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         table.reloadData()
         startView.isHidden = Contacts.Lenght() != 0
         table.isHidden = Contacts.Lenght() == 0
+    }
+    
+//    Переместил функцию пониже, чтобы она не разбивала
+//    методы жизненного цикла контроллера, чтобы потом
+//    было проще ориентироваться
+    
+//    Ну и конечноже нельзя называть функции с большой буквы
+    @IBAction func ShowAddContact(_ sender: Any) {
+        Contacts.kind = -1;
     }
     
 }

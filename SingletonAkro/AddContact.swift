@@ -35,6 +35,9 @@ class AddContact: UIViewController{
         navigationController?.popViewController(animated: true)
     }
     
+//    Методы жизненного цикла лучше бы переносить повыше,
+//    так обычно принято для удобства чтения
+//    Т.е. сначала функция viewWillApper, а потом уже saveAction
     override func viewWillAppear(_ animated: Bool) {
         if (Contacts.kind == -1) {
             nameText.text = ""
